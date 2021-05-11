@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework_jwt',
     'auth_',
     'main',
+    'review',
 ]
 
 MIDDLEWARE = [
@@ -80,13 +81,15 @@ WSGI_APPLICATION = 'MangaProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'manga_base',
+        'NAME': 'newbd_project',
         'USER': 'demo_user',
         'PASSWORD': '123456789',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+AUTH_USER_MODEL = 'auth_.MainUser'
 
 
 # Password validation

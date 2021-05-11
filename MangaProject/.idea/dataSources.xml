@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="manga_base@127.0.0.1" uuid="7361f518-8d18-481b-bc3b-1e6f1796ec0e">
-      <driver-ref>greenplum</driver-ref>
+    <data-source source="LOCAL" name="newbd_project@127.0.0.1" uuid="f1a327c7-8f86-42fb-84d4-3401e3531e64">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/manga_base</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/newbd_project</jdbc-url>
     </data-source>
   </component>
 </project>
