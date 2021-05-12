@@ -1,1 +1,1 @@
-# MangaStore
+# MangaListStore
