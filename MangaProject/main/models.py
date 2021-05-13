@@ -48,3 +48,12 @@ class Ranobe(JournalBase):
     class Meta:
         verbose_name = 'Ранобэ'
         verbose_name_plural = 'Ранобэ'
+
+class SemilarManga(models.Model):
+    name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название')
+    manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
+
+class SemilarRanobe(models.Model):
+    name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название')
+    ranobe = models.ForeignKey(Ranobe, on_delete=models.CASCADE)
+

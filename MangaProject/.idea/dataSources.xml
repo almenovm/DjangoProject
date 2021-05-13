@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="newbd_project@127.0.0.1" uuid="f1a327c7-8f86-42fb-84d4-3401e3531e64">
+    <data-source source="LOCAL" name="newmangadb@127.0.0.1" uuid="bf911e3e-e991-49a7-bc01-d7fb864805d4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/newbd_project</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/newmangadb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="21289d2b-822d-4b97-9601-330f58cc0f9a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/MangaProject/settings.py</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/newmangadb</jdbc-url>
     </data-source>
   </component>
 </project>

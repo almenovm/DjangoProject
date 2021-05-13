@@ -15,7 +15,7 @@ class Comment(models.Model):
 
 class Review(Comment):
     title = models.CharField(max_length=255, verbose_name='Тема')
-    rating = models.PositiveIntegerField('Рейтинг товара', choices=RATING_CHOICES, default='0/5 - оценок пока нет')
+    rating = models.CharField(max_length=30, choices=RATING_CHOICES, default='0/5 - оценок пока нет',  verbose_name='Рейтинг товара')
 
 class Reply(Comment):
     review = models.ForeignKey(Review, verbose_name='Отзыв', on_delete=models.CASCADE)

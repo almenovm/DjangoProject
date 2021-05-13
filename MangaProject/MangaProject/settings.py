@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'MangaProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'newbd_project',
+        'NAME': 'newmangadb',
         'USER': 'demo_user',
         'PASSWORD': '123456789',
         'HOST': 'localhost',
