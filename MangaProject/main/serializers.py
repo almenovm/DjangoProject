@@ -23,14 +23,27 @@ class MangaSerializer(serializers.ModelSerializer):
         model = Manga
         fields = ('name', 'price', 'genre', 'image')
 
+    def validate_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError('price must be positive')
+
+    # def validate(self, attrs):
+    #     return attrs
+
 
 
 class RanobeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ranobe
-        fields = ('name', 'price', 'genre', 'image')
+        fields = ('name', 'price', 'genre', 'image', 'num_pages')
 
+    def validate_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError('price must be positive')
 
+    def validate_num_pages(self, value):
+        if value < 1:
+            raise serializers.ValidationError('page number must be positive')
 
 class AuthorSerializer(serializers.ModelSerializer):
     manga = MangaSerializer
@@ -46,15 +59,23 @@ class RanobeFullSerializer(RanobeSerializer):
     publisher = PublisherSerializer
 
     class Meta(RanobeSerializer.Meta):
-        fields = RanobeSerializer.Meta.fields + ('authors', 'publisher', 'num_pages')
+        fields = RanobeSerializer.Meta.fields + ('authors', 'publisher')
 
+    def validate_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError('price must be positive')
 
 
 class MangaFullSerializer(MangaSerializer):
+
     authors = AuthorSerializer
     publisher = PublisherSerializer
     class Meta(MangaSerializer.Meta):
         fields = MangaSerializer.Meta.fields + ('authors', 'publisher')
+
+    def validate_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError('price must be positive')
 
 
 
@@ -81,7 +102,7 @@ class SemilarRanobeSerializer(serializers.Serializer):
     ranobe = serializers.PrimaryKeyRelatedField
 
     def create(self, validated_data):
-        ranobe = SemilarManga.objects.create(name=validated_data.get('name'), ranobe=validated_data.get('ranobe'))
+        ranobe = SemilarRanobe.objects.create(name=validated_data.get('name'), ranobe=validated_data.get('ranobe'))
         return ranobe
 
     def update(self, instance, validated_data):

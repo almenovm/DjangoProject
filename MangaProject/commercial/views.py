@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -8,6 +9,9 @@ from rest_framework.response import Response
 
 from .models import Advertising
 from .serializers import AdvertisingSerializer, AdvertisingFullSerializer
+import logging
+
+logger = logging.getLogger(__name__)
 
 @api_view(['GET', 'POST'])
 def advs_list(request):
@@ -24,17 +28,23 @@ def advs_list(request):
         return Response({'error': serializer.errors},
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 permission_classes = (AllowAny,)
+
 @api_view(['GET', 'DELETE'])
 def advs_detail(request, pk):
     try:
-        advs = Advertising.objects.get(id=pk)
-    except Advertising.DoesNotExist as e:
-        return Response({'error': str(e)})
+        advs = Advertising.objects.get(pk=pk)
+    except Advertising.DoesNotExist:
+        return JsonResponse({'message': 'The tutorial does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = AdvertisingFullSerializer(advs)
-        return Response(serializer.data)
+        tutorial_serializer = AdvertisingFullSerializer(advs)
+        return JsonResponse(tutorial_serializer.data)
+
     elif request.method == 'DELETE':
         advs.delete()
-        return Response({'deleted': True})
-permission_classes = (AllowAny,)
+        logger.debug('deleted')
+        logger.info('deleted')
+        logger.warning('deleted')
+        logger.error('deleted')
+        logger.critical('deleted')
+        return JsonResponse({'message': 'Advertising was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)

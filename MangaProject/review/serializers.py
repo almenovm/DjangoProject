@@ -7,6 +7,11 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = '__all__'
 
+    def validate_title(self, value):
+        if '#' and '_' and '*' and '$' in value:
+            raise serializers.ValidationError('invaild symbols, do not use # / _ % *')
+        return value
+
 class ReplySerializer(serializers.ModelSerializer):
 
     class Meta:

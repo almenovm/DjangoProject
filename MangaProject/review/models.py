@@ -13,9 +13,16 @@ class Comment(models.Model):
     class Meta:
         abstract = True
 
+class ReplyQuerySet(models.QuerySet):
+
+    def get_by_user(self, main_usser_id):
+        return self.get_related().filter(main_usser_id=main_usser_id)
+
 class Review(Comment):
     title = models.CharField(max_length=255, verbose_name='Тема')
     rating = models.CharField(max_length=30, choices=RATING_CHOICES, default='0/5 - оценок пока нет',  verbose_name='Рейтинг товара')
 
 class Reply(Comment):
     review = models.ForeignKey(Review, verbose_name='Отзыв', on_delete=models.CASCADE)
+    objects = ReplyQuerySet.as_manager()
+

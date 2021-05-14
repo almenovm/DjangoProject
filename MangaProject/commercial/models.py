@@ -3,6 +3,11 @@ from django.db import models
 # Create your models here.
 from utils.validators import validate_size, validate_extension
 
+class AdvsManager(models.Manager):
+
+    def get_by_advs_without_relation(self, advertising_id):
+        return self.filter(advertising_id=advertising_id)
+
 
 class Advertising(models.Model):
     company_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название компании')
@@ -13,3 +18,7 @@ class Advertising(models.Model):
     class Meta:
         verbose_name = 'Реклама'
         verbose_name_plural = 'Рекламы'
+
+    objects = AdvsManager()
+
+

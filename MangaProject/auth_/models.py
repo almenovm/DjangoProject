@@ -4,11 +4,15 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 from utils.constants import USER_ROLES, USER_ROLE_CUSTOMER
+import logging
+
+logger = logging.getLogger(__name__)
 
 class MainUserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, email, password, **extra_fields):
+
         """
         Creates and saves a User with the given email and password.
         """

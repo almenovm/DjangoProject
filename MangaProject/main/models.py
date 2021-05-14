@@ -1,4 +1,6 @@
 from django.db import models
+from rest_framework import serializers
+
 from utils.constants import M_TYPE_CHOICES, R_TYPE_CHOICES, COLOR_CHOICES
 import datetime
 
@@ -59,13 +61,20 @@ class JournalBase(models.Model):
         verbose_name = 'Журнал'
         verbose_name_plural = 'Журналы'
 
+    def price_range_validation(value):
+        if not (0 <= value <= 30000):
+            raise serializers.ValidationError('Invalid price value')
+
 
 class Manga(JournalBase):
     color_type = models.CharField(max_length=20, choices=COLOR_CHOICES, default='Черно-белый', verbose_name='Цвет манги')
     release_type = models.CharField(max_length=20, choices=M_TYPE_CHOICES, default='Еженедельник', verbose_name='Тип издания')
+    objects = JournalManager()
     class Meta:
         verbose_name = 'Манга'
         verbose_name_plural = 'Манга'
+
+
 
 
 class Ranobe(JournalBase):
@@ -76,11 +85,15 @@ class Ranobe(JournalBase):
         verbose_name = 'Ранобэ'
         verbose_name_plural = 'Ранобэ'
 
+    def num_pages_range_validation(value):
+        if not (1 <= value <= 1700):
+            raise serializers.ValidationError('Invalid num_pages value')
+
 class SemilarManga(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название')
-    manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
+    manga = models.ForeignKey(Manga, on_delete=models.CASCADE, null=True)
 
 class SemilarRanobe(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название')
-    ranobe = models.ForeignKey(Ranobe, on_delete=models.CASCADE)
+    ranobe = models.ForeignKey(Ranobe, on_delete=models.CASCADE, null=True)
 

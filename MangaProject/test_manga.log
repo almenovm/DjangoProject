@@ -1,0 +1,12 @@
+INFO -- 2021-05-14 18:05:00,353: get permissions
+WARNING -- 2021-05-14 18:05:00,353: get permissions
+ERROR -- 2021-05-14 18:05:00,354: get permissions
+CRITICAL -- 2021-05-14 18:05:00,354: get permissions
+INFO -- 2021-05-14 18:42:10,572: deleted
+WARNING -- 2021-05-14 18:42:10,573: deleted
+ERROR -- 2021-05-14 18:42:10,574: deleted
+CRITICAL -- 2021-05-14 18:42:10,574: deleted
+INFO -- 2021-05-14 20:01:05,914: created
+WARNING -- 2021-05-14 20:01:05,917: created
+ERROR -- 2021-05-14 20:01:05,918: created
+CRITICAL -- 2021-05-14 20:01:05,919: created

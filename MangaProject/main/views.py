@@ -1,11 +1,15 @@
 from rest_framework import viewsets, generics
+from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from rest_framework.response import Response
 
 from main.models import Manga, Ranobe, Publisher, SemilarManga, SemilarRanobe
 from main.serializers import MangaSerializer, RanobeSerializer, PublisherSerializer, SemilarMangaSerializer, \
     SemilarRanobeSerializer, MangaFullSerializer, RanobeFullSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
+import logging
 
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -16,6 +20,12 @@ class MangaViewSet(viewsets.ModelViewSet):
     parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get_permissions(self):
+        logger.debug('get permissions')
+        logger.info('get permissions')
+        logger.warning('get permissions')
+        logger.error('get permissions')
+        logger.critical('get permissions')
+
         if self.action == 'list':
             permission_classes = (AllowAny,)
         else:
@@ -64,7 +74,10 @@ class SemilarRanobeListAPIView(generics.ListCreateAPIView):
     serializer_class = SemilarRanobeSerializer
     permission_classes = (AllowAny,)
 
+
 class SemilarRanobeDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = SemilarRanobe.objects.all()
     serializer_class = SemilarRanobeSerializer
+    # serializer_class.is_valid(raise_exception=True)
     permission_classes = (AllowAny,)
+
