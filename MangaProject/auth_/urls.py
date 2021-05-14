@@ -4,5 +4,4 @@ from auth_.views import *
 
 urlpatterns = [
     path('login/', obtain_jwt_token),
-    # path('register/', obtain_jwt_token),
 ]

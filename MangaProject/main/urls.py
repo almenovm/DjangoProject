@@ -1,11 +1,15 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework import routers
-from .views import PublisherListAPIView, PublisherDetailAPIView, SemilarMangaListAPIView, SemilarRanobeListAPIView, MangaViewSet, RanobeViewSet, SemilarMangaDetailAPIView, SemilarRanobeDetailAPIView
+from .views import PublisherListAPIView, PublisherDetailAPIView, SemilarMangaListAPIView, SemilarRanobeListAPIView, \
+    MangaViewSet, RanobeViewSet, SemilarMangaDetailAPIView, SemilarRanobeDetailAPIView, MangaFullViewSet, \
+    RanobeFullViewSet
 
 router = DefaultRouter()
-router.register(r'manga', viewset=MangaViewSet, basename='manga')
-router.register(r'ranobe', viewset=RanobeViewSet, basename='ranobe')
+router.register(r'manga', viewset=MangaViewSet, basename='main')
+router.register(r'ranobe', viewset=RanobeViewSet, basename='main')
+router.register(r'ranobe-dt', viewset=RanobeFullViewSet, basename='main')
+router.register(r'manga-dt', viewset=MangaFullViewSet, basename='main')
 
 urlpatterns = [
 

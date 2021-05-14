@@ -1,7 +1,23 @@
 from django.db import models
 from utils.constants import M_TYPE_CHOICES, R_TYPE_CHOICES, COLOR_CHOICES
+import datetime
 
 #
+from utils.validators import validate_size, validate_extension
+
+
+
+class JournalManager(models.Manager):
+
+    def get_by_author_with_relation(self, author_id):
+        return self.get_related().filter(author_id=author_id)
+
+    def get_by_author_without_relation(self, author_id):
+        return self.filter(author_id=author_id)
+
+    def get_related(self):
+        return self.select_related('authors', 'publisher')
+
 
 
 class Publisher(models.Model):
@@ -17,14 +33,25 @@ class Publisher(models.Model):
     def __str__(self):
         return self.name
 
+class Author(models.Model):
+    first_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Имя')
+    last_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Фамилия')
+
+    class Meta:
+        verbose_name = 'Автор'
+        verbose_name_plural = 'Авторы'
 
 class JournalBase(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название')
     price = models.IntegerField(default=0, verbose_name='Цена')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     genre = models.CharField(max_length=255, null=True, blank=True, verbose_name='Жанр')
-    publication_date = models.DateField(verbose_name='Дата публикации')
+    publication_date = models.DateField(verbose_name='Дата публикации', default=datetime.date.today)
+    authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, on_delete=models.RESTRICT, verbose_name='Издатель', null=True)
+    image = models.ImageField(upload_to='journal_photos',
+                              validators=[validate_size, validate_extension],
+                              null=True, blank=True)
 
     class Meta:
         ordering = ['name']

@@ -1,18 +1,5 @@
 from rest_framework import serializers
-from main.models import Manga, Ranobe, Publisher, SemilarRanobe, SemilarManga
-
-
-class MangaSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Manga
-        fields = '__all__'
-
-
-class RanobeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ranobe
-        fields = '__all__'
+from main.models import Manga, Ranobe, Publisher, SemilarRanobe, SemilarManga, Author
 
 class PublisherSerializer(serializers.Serializer):
     name = serializers.CharField()
@@ -30,6 +17,50 @@ class PublisherSerializer(serializers.Serializer):
         return instance
 
 
+
+class MangaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Manga
+        fields = ('name', 'price', 'genre', 'image')
+
+
+
+class RanobeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ranobe
+        fields = ('name', 'price', 'genre', 'image')
+
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    manga = MangaSerializer
+    ranobe = RanobeSerializer
+    class Meta:
+        model = Author
+        fields = ('first_name', 'last_name', 'manga', 'ranobe')
+
+
+
+class RanobeFullSerializer(RanobeSerializer):
+    authors = AuthorSerializer
+    publisher = PublisherSerializer
+
+    class Meta(RanobeSerializer.Meta):
+        fields = RanobeSerializer.Meta.fields + ('authors', 'publisher', 'num_pages')
+
+
+
+class MangaFullSerializer(MangaSerializer):
+    authors = AuthorSerializer
+    publisher = PublisherSerializer
+    class Meta(MangaSerializer.Meta):
+        fields = MangaSerializer.Meta.fields + ('authors', 'publisher')
+
+
+
+
+
+
 class SemilarMangaSerializer(serializers.Serializer):
     name = serializers.CharField()
     manga = serializers.PrimaryKeyRelatedField
@@ -43,6 +74,7 @@ class SemilarMangaSerializer(serializers.Serializer):
         instance.manga = validated_data.get('manga', instance.manga)
         instance.save()
         return instance
+
 
 class SemilarRanobeSerializer(serializers.Serializer):
     name = serializers.CharField()

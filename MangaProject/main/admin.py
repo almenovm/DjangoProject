@@ -7,3 +7,4 @@ from main.models import *
 admin.site.register(Manga)
 admin.site.register(Ranobe)
 admin.site.register(Publisher)
+admin.site.register(Author)
