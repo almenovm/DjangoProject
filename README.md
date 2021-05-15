@@ -5,6 +5,11 @@
 
 Installed python version 3+
 
+## Models
+
+MainUser, Profile, Advertising, Publisher, Author, Manga,
+Ranobe, SemilarManga, SemilarRanobe, Comment, Review, Reply, ShopCart, ShopCartItems
+
 ## Installation 
 * Install virtual environment 'python3 -m venv name_of_env'
 * Create virtual environment 'virtalenv name_of_env'
