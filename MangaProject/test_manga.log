@@ -10,3 +10,19 @@ INFO -- 2021-05-14 20:01:05,914: created
 WARNING -- 2021-05-14 20:01:05,917: created
 ERROR -- 2021-05-14 20:01:05,918: created
 CRITICAL -- 2021-05-14 20:01:05,919: created
+INFO -- 2021-05-15 00:01:36,768: get permissions
+WARNING -- 2021-05-15 00:01:36,774: get permissions
+ERROR -- 2021-05-15 00:01:36,774: get permissions
+CRITICAL -- 2021-05-15 00:01:36,774: get permissions
+INFO -- 2021-05-15 00:01:39,979: get permissions
+WARNING -- 2021-05-15 00:01:39,979: get permissions
+ERROR -- 2021-05-15 00:01:39,980: get permissions
+CRITICAL -- 2021-05-15 00:01:39,980: get permissions
+INFO -- 2021-05-15 00:01:39,989: get permissions
+WARNING -- 2021-05-15 00:01:39,990: get permissions
+ERROR -- 2021-05-15 00:01:39,990: get permissions
+CRITICAL -- 2021-05-15 00:01:39,990: get permissions
+INFO -- 2021-05-15 00:01:46,449: get permissions
+WARNING -- 2021-05-15 00:01:46,449: get permissions
+ERROR -- 2021-05-15 00:01:46,449: get permissions
+CRITICAL -- 2021-05-15 00:01:46,450: get permissions

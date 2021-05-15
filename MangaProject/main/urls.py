@@ -24,4 +24,3 @@ path('semilar/ranobe/<int:pk>/', SemilarRanobeDetailAPIView.as_view()),
 
 path('', include(router.urls))
 ]
-

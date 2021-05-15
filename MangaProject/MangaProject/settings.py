@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'main',
     'review',
     'commercial',
+    'shop_cart',
 ]
 
 MIDDLEWARE = [
@@ -181,6 +182,10 @@ LOGGING = {
             'level': 'DEBUG',
         },
         'review': {
+            'handlers': ['file_handler', 'console_handler'],
+            'level': 'DEBUG',
+        },
+        'shop_cart': {
             'handlers': ['file_handler', 'console_handler'],
             'level': 'DEBUG',
         },
