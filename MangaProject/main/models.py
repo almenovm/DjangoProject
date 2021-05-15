@@ -45,7 +45,7 @@ class Author(models.Model):
 
 class JournalBase(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название')
-    price = models.IntegerField(default=0, verbose_name='Цена')
+    price = models.IntegerField(default=0, verbose_name='Цена', null=True)
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     genre = models.CharField(max_length=255, null=True, blank=True, verbose_name='Жанр')
     publication_date = models.DateField(verbose_name='Дата публикации', default=datetime.date.today)

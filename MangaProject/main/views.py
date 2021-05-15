@@ -40,6 +40,26 @@ class RanobeViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = Ranobe.objects.all()
     serializer_class = RanobeSerializer
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
+
+    filter_backends = (DjangoFilterBackend,
+                       filters.SearchFilter,)
+    search_fields = ('name', 'genre',)
+
+    def get_permissions(self):
+        logger.debug('get permissions')
+        logger.info('get permissions')
+        logger.warning('get permissions')
+        logger.error('get permissions')
+        logger.critical('get permissions')
+
+        if self.action == 'list':
+            permission_classes = (AllowAny,)
+        else:
+            permission_classes = (AllowAny,)
+
+        return [permission() for permission in permission_classes]
+
 
 class MangaFullViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
@@ -51,10 +71,6 @@ class RanobeFullViewSet(viewsets.ModelViewSet):
     queryset = Ranobe.objects.all()
     serializer_class = RanobeFullSerializer
 
-    filter_backends = (DjangoFilterBackend,
-                       filters.SearchFilter,)
-
-    search_fields = ('name', 'genre', 'num_pages',)
 
 class PublisherListAPIView(generics.ListCreateAPIView):
     queryset = Publisher.objects.all()
