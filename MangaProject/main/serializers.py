@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from main.models import Manga, Ranobe, Publisher, SemilarRanobe, SemilarManga, Author
 
-
 class PublisherSerializer(serializers.Serializer):
     name = serializers.CharField()
     address = serializers.CharField()
